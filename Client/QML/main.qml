@@ -12,9 +12,8 @@ ApplicationWindow {
     InitialScreen
     {
         id: rowLayout
-        anchors.top: parent.top
-        anchors.left: parent.left
-        anchors.right: parent.right
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.horizontalCenter: parent.horizontalCenter
     }
 
     // Список, в который добавляются элементы с данными из TextInput

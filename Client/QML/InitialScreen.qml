@@ -18,23 +18,41 @@
 
             Rectangle
             {
-               width: parent.width
-               height: 50
-               color: "#00ff00"
+                width: parent.width
+                height: 50
 
-                TextInput {
-                    id: textInputNickName
-                    anchors.fill: parent
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
+                Text {
+                    id: loginText
+                    anchors.left: parent.left
+                    anchors.verticalCenter: parent.verticalCenter
+                    width: rectPasswordLayout.passwordWidth
+                    text: qsTr("Login: ")
+                }
 
-                    /* По нажатию клавиши Enter передаём информацию
-                     * из TextInput в элемент ListView
-                     * */
-                    Keys.onPressed: {
-                        // 16777220 - код клавиши Enter
-                        if(event.key === 16777220){
-                            listModel.append({ textList: textInput.text })
+                Rectangle
+                {
+                    id: textInputLoginRect
+                    height: parent.height
+                    anchors.left: loginText.right
+                    anchors.right: parent.right
+                    border.color: "black"
+                    border.width: 1
+
+                    TextInput
+                    {
+                        id: textInputNickName
+                        anchors.fill: parent
+                        anchors.leftMargin: 5
+                        verticalAlignment: Text.AlignVCenter
+
+                        /* По нажатию клавиши Enter передаём информацию
+                         * из TextInput в элемент ListView
+                         * */
+                        Keys.onPressed: {
+                            // 16777220 - код клавиши Enter
+                            if(event.key === 16777220){
+                                listModel.append({ textList: textInputNickName.text })
+                            }
                         }
                     }
                 }
@@ -43,23 +61,43 @@
     //        // Область с TextInput
             Rectangle
             {
+                id: rectPasswordLayout
+                property alias passwordWidth: passwordText.width
                 width: parent.width
                 height: 50
-                color: "#00ff00"
 
-                TextInput {
-                    id: textInputPassword
-                    anchors.fill: parent
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
+                Text {
+                    id: passwordText
+                    anchors.left: parent.left
+                    anchors.verticalCenter: parent.verticalCenter
+                    text: qsTr("Password: ")
+                }
 
-                    /* По нажатию клавиши Enter передаём информацию
-                     * из TextInput в элемент ListView
-                     * */
-                    Keys.onPressed: {
-                        // 16777220 - код клавиши Enter
-                        if(event.key === 16777220){
-                            listModel.append({ textList: textInput.text })
+                Rectangle
+                {
+                    id: textInputPasswordRect
+                    height: parent.height
+                    anchors.left: passwordText.right
+                    anchors.right: parent.right
+                    border.color: "black"
+                    border.width: 1
+
+                    TextInput
+                    {
+                        id: textInputPassword
+                        anchors.fill: parent
+                        anchors.leftMargin: 5
+                        color: "#00ff00"
+                        verticalAlignment: Text.AlignVCenter
+
+                        /* По нажатию клавиши Enter передаём информацию
+                         * из TextInput в элемент ListView
+                         * */
+                        Keys.onPressed: {
+                            // 16777220 - код клавиши Enter
+                            if(event.key === 16777220){
+                                listModel.append({ textList: textInputPassword.text })
+                            }
                         }
                     }
                 }
