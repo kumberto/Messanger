@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>QML/main.qml</file>
         <file>QML/InitialScreen.qml</file>
+        <file>QML/RegistryMenu.qml</file>
     </qresource>
 </RCC>
