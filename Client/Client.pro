@@ -8,7 +8,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        GUI/LoginGUI.cpp \
+        GUI/GUI.cpp \
         Model/Model.cpp \
         controller.cpp \
         main.cpp
@@ -27,8 +27,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    GUI/GUI.h \
     GUI/GUIInterface.h \
-    GUI/LoginGUI.h \
     GUIInterface.h \
     Model/Model.h \
+    Model/ModelInterface.h \
     controller.h

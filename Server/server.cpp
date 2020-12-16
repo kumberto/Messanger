@@ -31,7 +31,8 @@ void Server::incomingConnection(qintptr socketDescriptor)
     connect(m_socket, SIGNAL(readyRead()), this, SLOT(sockReady()));
     connect(m_socket, SIGNAL(disconnected()), this, SLOT(sockDisc()));
     qDebug()<< socketDescriptor << "Client connected";
-            m_socket->write("");
+    m_socket->write("You are connect");
+
 }
 
 void Server::sockReady()
@@ -41,5 +42,6 @@ void Server::sockReady()
 
 void Server::sockDisc()
 {
-
+    qDebug()<<"Disconnect";
+    m_socket->deleteLater();
 }

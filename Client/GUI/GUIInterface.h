@@ -21,6 +21,7 @@ struct UsersData
 class GUIInterface
 {
     public:
+        virtual bool singIn(std::string nickName, std::string password) = 0;
         virtual bool registration(std::string nickName, std::string password) = 0;
         virtual bool findFriend(std::string nickName) = 0;
         virtual std::vector<History> getHistoryOfUser() = 0;
