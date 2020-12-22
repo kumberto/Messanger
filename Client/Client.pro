@@ -1,4 +1,4 @@
-QT += quick core gui
+QT += quick core gui widgets
 QT += network
 
 CONFIG += c++17

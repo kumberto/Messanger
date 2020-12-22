@@ -3,7 +3,17 @@
 
 Server::Server()
 {
-
+    QFile file;
+    file.setFileName("Users.json");
+    if (file.open(QIODevice::ReadOnly|QFile::Text))
+    {
+        QByteArray fromFile = file.readAll();
+        m_Users = QJsonDocument::fromJson(fromFile, &m_error);
+    }
+    if(m_error.errorString().toInt() != QJsonParseError::NoError)
+    {
+        qDebug()<<"Error: " << m_error.errorString().toInt();
+    }
 }
 
 Server::~Server()
@@ -37,7 +47,17 @@ void Server::incomingConnection(qintptr socketDescriptor)
 
 void Server::sockReady()
 {
+    m_data = m_socket->readAll();
+    qDebug() << "Data: " << m_data;
+    m_document = QJsonDocument::fromJson(m_data, &m_error);
 
+    if(m_error.errorString().toInt() == QJsonParseError::NoError)
+    {
+        if (m_document.object().value("type").toString() == "SingIn")
+        {
+
+        }
+    }
 }
 
 void Server::sockDisc()
