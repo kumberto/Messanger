@@ -6,7 +6,7 @@
 class ModelInterface
 {
 public:
-    virtual bool singIn(std::string nickName, std::string password) = 0;
+    virtual void singIn(std::string nickName, std::string password) = 0;
 };
 
 #endif // MODELINTERFACE_H

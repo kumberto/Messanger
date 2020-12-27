@@ -3,38 +3,39 @@ import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 Item
 {
-    width: 300
-    height: 200
+    width: parent.width/2
+    height: parent.height/2
 
     Column
     {
         id: rowLayout
         anchors.top: parent.top
         anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.margins: 5
-        height: 50
-        spacing: 2
+        width: parent.width
+        spacing: 10
 
-        Rectangle
+        Row
         {
             width: parent.width
-            height: 50
+            height: 40
 
-            Text {
-                id: loginText
-                anchors.left: parent.left
-                anchors.verticalCenter: parent.verticalCenter
-                width: rectPasswordLayout.passwordWidth
-                text: qsTr("User Name: ")
+            Rectangle
+            {
+                height: parent.height
+                width: loginText.width
+                Text {
+                    id: loginText
+                    width: rectConfirPasswordLayout.confirPasswordWidth
+                    anchors.verticalCenter: parent.verticalCenter
+                    text: qsTr("User Name: ")
+                }
             }
 
             Rectangle
             {
                 id: textInputLoginRect
                 height: parent.height
-                anchors.left: loginText.right
-                anchors.right: parent.right
+                width: parent.width
                 border.color: "black"
                 border.width: 1
 
@@ -59,26 +60,30 @@ Item
         }
 
 //        // Область с TextInput
-        Rectangle
+        Row
         {
             id: rectPasswordLayout
-            property alias passwordWidth: passwordText.width
+            //property alias passwordWidth: passwordText.width
             width: parent.width
-            height: 50
+            height: 40
 
-            Text {
-                id: passwordText
-                anchors.left: parent.left
-                anchors.verticalCenter: parent.verticalCenter
-                text: qsTr("Password: ")
+            Rectangle
+            {
+                height: parent.height
+                width: passwordText.width
+                Text {
+                    id: passwordText
+                    width: rectConfirPasswordLayout.confirPasswordWidth
+                    anchors.verticalCenter: parent.verticalCenter
+                    text: qsTr("Password: ")
+                }
             }
 
             Rectangle
             {
                 id: textInputPasswordRect
                 height: parent.height
-                anchors.left: passwordText.right
-                anchors.right: parent.right
+                width: parent.width
                 border.color: "black"
                 border.width: 1
 
@@ -103,26 +108,29 @@ Item
             }
         }
 
-        Rectangle
+        Row
         {
             id: rectConfirPasswordLayout
-            property alias passwordWidth: passwordText.width
+            property alias confirPasswordWidth: confirPasswordText.width
             width: parent.width
-            height: 50
+            height: 40
 
-            Text {
-                id: confirPasswordText
-                anchors.left: parent.left
-                anchors.verticalCenter: parent.verticalCenter
-                text: qsTr("Password: ")
+            Rectangle
+            {
+                height: parent.height
+                width: confirPasswordText.width
+                Text {
+                    id: confirPasswordText
+                    anchors.verticalCenter: parent.verticalCenter
+                    text: qsTr("Confir Password:")
+                }
             }
 
             Rectangle
             {
                 id: textInputConfirPasswordRect
                 height: parent.height
-                anchors.left: passwordText.right
-                anchors.right: parent.right
+                width: parent.width
                 border.color: "black"
                 border.width: 1
 
@@ -140,33 +148,36 @@ Item
                     Keys.onPressed: {
                         // 16777220 - код клавиши Enter
                         if(event.key === 16777220){
-                            listModel.append({ textList: textInputPassword.text })
+                            //listModel.append({ textList: textInputPassword.text })
                         }
                     }
                 }
             }
         }
 
-        Rectangle
+        Row
         {
             id: rectEmailLayout
-            property alias passwordWidth: passwordText.width
             width: parent.width
-            height: 50
+            height: 40
 
-            Text {
-                id: emailText
-                anchors.left: parent.left
-                anchors.verticalCenter: parent.verticalCenter
-                text: qsTr("email: ")
+            Rectangle
+            {
+                height: parent.height
+                width: emailText.width
+                Text {
+                    id: emailText
+                    anchors.verticalCenter: parent.verticalCenter
+                    width: rectConfirPasswordLayout.confirPasswordWidth
+                    text: qsTr("email: ")
+                }
             }
 
             Rectangle
             {
                 id: textInputEmailRect
                 height: parent.height
-                anchors.left: passwordText.right
-                anchors.right: parent.right
+                width: parent.width
                 border.color: "black"
                 border.width: 1
 
@@ -196,12 +207,12 @@ Item
         Rectangle
         {
             width: 100
-            height: 50
+            height: 40
             anchors.horizontalCenter : parent.horizontalCenter
             Button
             {
                 id: button
-                text: qsTr("добавить")
+                text: qsTr("Registry")
 
                 onClicked: {
                     listModel.append({ textList: textInputNickName.text + " " + textInputPassword.text })

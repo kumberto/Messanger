@@ -21,9 +21,9 @@ void Model::setErrorMessage(QString value)
     emit errorMessageChanged();
 }
 
-bool Model::singIn(std::string nickName, std::string password)
+void Model::singIn(std::string nickName, std::string password)
 {
-    std::string data = nickName + password;
+    std::string data = "{\"login\":\"" + nickName + "\"" + "\"password\":"  + "\"" + password + "\"}";
     m_socket->write(data.c_str(), data.length());
 }
 

@@ -95,13 +95,23 @@ Item
             anchors.horizontalCenter : parent.horizontalCenter
             Button
             {
-                id: button
-                text: qsTr("добавить")
+                id: buttonSingUp
+                text: qsTr("Registry")
+
+                onClicked: {
+                    singIn(textInputNickName.text, textInputPassword.text)
+                }
+            }
+            Button
+            {
+                id: buttonSingIn
+                text: qsTr("SingIn")
 
                 onClicked: {
                     singIn(textInputNickName.text, textInputPassword.text)
                 }
             }
         }
+
     }
 }

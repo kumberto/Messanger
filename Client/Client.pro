@@ -28,7 +28,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     GUI/GUI.h \
-    GUI/GUIInterface.h \
+    GUI/GUIRequestInterface.h \
+    GUI/GUIResponseInterface.h \
     GUIInterface.h \
     Model/Model.h \
     Model/ModelInterface.h \

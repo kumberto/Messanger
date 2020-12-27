@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
     const QUrl url(QStringLiteral("qrc:/QML/main.qml"));
 
     std::unique_ptr<ModelInterface> model = std::make_unique<Model>();
-    std::unique_ptr<GUIInterface> controller = std::make_unique<Controller>(std::move(model));
+    std::unique_ptr<GUIRequestInterface> controller = std::make_unique<Controller>(std::move(model));
     GUI gui(std::move(controller));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {

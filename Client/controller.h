@@ -2,22 +2,22 @@
 #define CONTROLLER_H
 #include <QObject>
 #include <memory>
-#include "GUI/GUIInterface.h"
+#include "GUI/GUIRequestInterface.h"
 #include "Model/ModelInterface.h"
 
-class Controller : public QObject, public GUIInterface
+class Controller : public QObject, public GUIRequestInterface
 {
     Q_OBJECT;
 public:
     Controller(std::unique_ptr<ModelInterface>);
 private:
-    virtual bool singIn(std::string nickName, std::string password) override;
-    virtual bool registration(std::string nickName, std::string password) override;
-    virtual bool findFriend(std::string nickName) override;
-    virtual std::vector<History> getHistoryOfUser() override;
-    virtual void addFriend(std::string nickName) override;
-    virtual bool sendMessage(std::string message) override;
-    virtual UsersData loadingData() override;
+    virtual void singInRequest(std::string nickName, std::string password) override;
+    virtual void registrationRequest(std::string nickName, std::string password) override;
+    virtual void findFriendRequest(std::string nickName) override;
+    virtual void getHistoryOfUserRequest() override;
+    virtual void addFriendRequest(std::string nickName) override;
+    virtual void sendMessageRequest(std::string message) override;
+    virtual void loadingDataRequest() override;
 
     std::unique_ptr<ModelInterface> m_model;
 };

@@ -24,7 +24,7 @@ private:
     QJsonParseError m_error;
 
     QMap<QString, QString> m_usersOnline;
-    QJsonDocument m_Users;
+    QJsonDocument m_users;
 
 public slots:
     void startServer();

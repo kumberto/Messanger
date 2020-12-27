@@ -21,7 +21,7 @@ public:
     void setErrorMessage(QString value);
 
 private:
-    bool singIn(std::string nickName, std::string password) override;
+    void singIn(std::string nickName, std::string password) override;
 
 signals:
     void errorMessageChanged();

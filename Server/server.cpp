@@ -1,5 +1,7 @@
 #include "server.h"
 //#include <QDebug>
+#include <QJsonValue>
+#include <QJsonObject>
 
 Server::Server()
 {
@@ -8,7 +10,7 @@ Server::Server()
     if (file.open(QIODevice::ReadOnly|QFile::Text))
     {
         QByteArray fromFile = file.readAll();
-        m_Users = QJsonDocument::fromJson(fromFile, &m_error);
+        m_users = QJsonDocument::fromJson(fromFile, &m_error);
     }
     if(m_error.errorString().toInt() != QJsonParseError::NoError)
     {
@@ -41,7 +43,7 @@ void Server::incomingConnection(qintptr socketDescriptor)
     connect(m_socket, SIGNAL(readyRead()), this, SLOT(sockReady()));
     connect(m_socket, SIGNAL(disconnected()), this, SLOT(sockDisc()));
     qDebug()<< socketDescriptor << "Client connected";
-    m_socket->write("You are connect");
+    m_socket->write("Success connected");
 
 }
 
@@ -54,6 +56,19 @@ void Server::sockReady()
     if(m_error.errorString().toInt() == QJsonParseError::NoError)
     {
         if (m_document.object().value("type").toString() == "SingIn")
+        {
+
+
+            if (m_users[m_document["login"].toString()].isNull())
+            {
+                m_socket->write("Failed");
+            }
+            else
+            {
+                m_socket->write("Success");
+            }
+        }
+        else if (m_document.object().value("type").toString() == "Register")
         {
 
         }
